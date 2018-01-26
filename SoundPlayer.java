@@ -43,6 +43,8 @@ public class SoundPlayer {
 
     //===========================STATIC METHODS=================================
     
+    // these MIDI methods aren't used right now, I wrote them when I needed
+    // a break from trying to debug code that wasn't working right
     /**
      * generates the MIDI command for 'Note On'
      * 
@@ -100,7 +102,6 @@ public class SoundPlayer {
      */
     public static void playNote(Pitch p, Instrument instrument) {
         Clip note = instrument.getSound(p);
-        System.out.println(p.toString());
         // if the note hasn't been played yet, this doesn't do anything
         // if it has, then it's necessary
         note.stop();
