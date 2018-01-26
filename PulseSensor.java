@@ -69,8 +69,7 @@ public class PulseSensor{
         }
     }
     
-    // for testing only! Handling the data itself outside of this class would 
-    // be bad programming practice!
+    // for testing
     /*
     public short data() {
         return adc.read(channel);
