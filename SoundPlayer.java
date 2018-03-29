@@ -43,54 +43,6 @@ public class SoundPlayer {
 
     //===========================STATIC METHODS=================================
     
-    // these MIDI methods aren't used right now, I wrote them when I needed
-    // a break from trying to debug code that wasn't working right
-    /**
-     * generates the MIDI command for 'Note On'
-     * 
-     * @param channel the channel to send the signal to (0 ~ 16)
-     * @param note the pitch of the note
-     * @param velocity the velocity (loudness) of the note (0 ~ 127)
-     * @return the 3 byte command for 'Note On' on MIDI devices
-     * 
-     * @see Pitch
-     */
-    public static byte[] noteOn(int channel, Pitch note, int velocity) {
-        // check for exceptions
-        if (channel > 16 || channel < 0) {
-            throw new IllegalArgumentException("The requested channel (channel " + channel + ") does not exist. MIDI only supports 0~16.");
-        }
-        if (velocity > 127 || velocity < 0) {
-            throw new IllegalArgumentException("The given velocity (" + velocity + ") is not valid. MIDI only supports 0~127.");
-        }
-        byte b1 = 0x09;
-        b1 <<= 4;
-        // if these casts weren't safe, an exception would've been thrown
-        b1 += (byte)channel;
-        return new byte[]{b1, note.MIDICode, (byte)velocity};
-    }
-    
-    /**
-     * generates the MIDI command for 'Note Off'
-     * 
-     * @param channel the channel to send the signal to (0 ~ 16)
-     * @param note the pitch of the note
-     * @return the 3 byte command for 'Note Off' on MIDI devices
-     * 
-     * @see Pitch
-     */
-    public static byte[] noteOff(int channel, Pitch note) {
-        // check for exceptions
-        if (channel > 16 || channel < 0) {
-            throw new IllegalArgumentException("The requested channel (channel " + channel + ") does not exist. MIDI only supports 0~16.");
-        }
-        byte b1 = 0x08;
-        b1 <<= 4;
-        // if this cast wasn't safe, an exception would've been thrown
-        b1 += (byte)channel;
-        return new byte[]{b1, note.MIDICode, 0x00};
-    }
-    
     /**
      * plays a pitch on the specified instrument
      * 
